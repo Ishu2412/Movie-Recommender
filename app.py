@@ -2,12 +2,11 @@ import streamlit as st
 import pickle 
 import pandas as pd
 import requests
-import numpy as np
 
 url = "https://drive.google.com/file/d/1MJRf2iQeIcND3xbSWkslQGh_hmx1AyIF/view?usp=sharing"
 response = requests.get(url)
 
-with open("sparse_matrix.npz", "wb") as file:
+with open("sparse_matrix.pkl", "wb") as file:
     file.write(response.content)
     
 def fetch_poster(movie_id):
@@ -42,7 +41,7 @@ def recommend(movie):
 movies_dict = pickle.load(open("movies_dict.pkl", "rb")) 
 movies = pd.DataFrame(movies_dict)
 
-similarity = np.load(open("sparse_matrix.npz", "rb"))
+similarity = pickle.load(open("sparse_matrix.pkl", "rb"))
 
 st.title("Movie Recommendation System")
 
