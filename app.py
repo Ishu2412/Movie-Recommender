@@ -7,7 +7,7 @@ url = "https://drive.google.com/file/d/1MJRf2iQeIcND3xbSWkslQGh_hmx1AyIF/view?us
 response = requests.get(url)
 
 with open("sparse_matrix.pkl", "wb") as file:
-    pickle.dump(similarity, file, protocol=pickle.HIGHEST_PROTOCOL)
+    file.write(response.content)
     
 def fetch_poster(movie_id):
     # Use requests.get to make the API call
