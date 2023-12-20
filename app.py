@@ -2,7 +2,7 @@ import streamlit as st
 import pickle 
 import pandas as pd
 import requests
-
+import numpy as np
 
 url = "https://drive.google.com/file/d/1MJRf2iQeIcND3xbSWkslQGh_hmx1AyIF/view?usp=sharing"
 response = requests.get(url)
