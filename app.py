@@ -2,6 +2,9 @@ import streamlit as st
 import pickle 
 import pandas as pd
 import requests
+import os
+
+script_dir = os.path.dirname(__file__)
 
 url = "https://drive.google.com/file/d/1MJRf2iQeIcND3xbSWkslQGh_hmx1AyIF/view?usp=sharing"
 response = requests.get(url)
@@ -41,7 +44,9 @@ def recommend(movie):
 movies_dict = pickle.load(open("movies_dict.pkl", "rb")) 
 movies = pd.DataFrame(movies_dict)
 
-with open("sparse_matrix.pkl", "rb") as file:
+file_path = os.path.join(script_dir, "sparse_matrix.pkl")
+
+with open(file_path, "rb") as file:
     similarity = pickle.load(file)
 
 st.title("Movie Recommendation System")
