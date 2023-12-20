@@ -3,6 +3,13 @@ import pickle
 import pandas as pd
 import requests
 
+
+url = "https://drive.google.com/file/d/1MJRf2iQeIcND3xbSWkslQGh_hmx1AyIF/view?usp=sharing"
+response = requests.get(url)
+
+with open("sparse_matrix.npz", "wb") as file:
+    file.write(response.content)
+    
 def fetch_poster(movie_id):
     # Use requests.get to make the API call
     response = requests.get("https://api.themoviedb.org/3/movie/{}?api_key=6dd5d25c600b8744fe8363ba7ebfae90&language=en-US".format(movie_id))
