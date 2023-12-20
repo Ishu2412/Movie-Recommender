@@ -7,7 +7,7 @@ url = "https://drive.google.com/file/d/1MJRf2iQeIcND3xbSWkslQGh_hmx1AyIF/view?us
 response = requests.get(url)
 
 with open("sparse_matrix.pkl", "wb") as file:
-    file.write(response.content)
+    pickle.dump(similarity, file, protocol=pickle.HIGHEST_PROTOCOL)
     
 def fetch_poster(movie_id):
     # Use requests.get to make the API call
@@ -41,7 +41,8 @@ def recommend(movie):
 movies_dict = pickle.load(open("movies_dict.pkl", "rb")) 
 movies = pd.DataFrame(movies_dict)
 
-similarity = pickle.load(open("sparse_matrix.pkl", "rb"))
+with open("sparse_matrix.pkl", "rb") as file:
+    similarity = pickle.load(file)
 
 st.title("Movie Recommendation System")
 
